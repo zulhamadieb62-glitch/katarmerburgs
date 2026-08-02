@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda & Kegiatan - KATAR RW 08</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-emerald-800 text-white flex-shrink-0">
+            <div class="p-5 text-center border-b border-emerald-700">
+                <h1 class="text-xl font-bold tracking-wide">KATAR RW 08</h1>
+                <p class="text-xs text-emerald-200 mt-1">Kelurahan Abadijaya, Kota Depok</p>
+            </div>
+            <nav class="p-4 space-y-2">
+                <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>Beranda</span>
+                </a>
+                <!-- Menu Aktif Saat Ini -->
+                <a href="agenda.html" class="flex items-center space-x-3 p-3 rounded-lg bg-emerald-700 text-white font-medium">
+                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                    <span>Agenda & Kegiatan</span>
+                </a>
+                <a href="dokumentasi.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <i data-lucide="image" class="w-5 h-5"></i>
+                    <span>Galeri Dokumentasi</span>
+                </a>
+                <a href="index.html#daftar" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <i data-lucide="user-plus" class="w-5 h-5"></i>
+                    <span>Daftar Anggota</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+            
+            <!-- Header Top Bar -->
+            <header class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-gray-200 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">📅 Jadwal Agenda & Kegiatan</h2>
+                    <p class="text-sm text-gray-500">Program kerja & kegiatan pemuda Karang Taruna RW 08 Abadijaya.</p>
+                </div>
+            </header>
+
+            <!-- Filter & Search Bar -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+                <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                    <button class="px-4 py-2 bg-emerald-800 text-white text-xs font-semibold rounded-full">Mendatang</button>
+                    <button class="px-4 py-2 bg-white text-gray-600 hover:bg-gray-200 text-xs font-semibold rounded-full border">Selesai</button>
+                    <button class="px-4 py-2 bg-white text-gray-600 hover:bg-gray-200 text-xs font-semibold rounded-full border">Semua Kegiatan</button>
+                </div>
+            </div>
+
+            <!-- Daftar Card Agenda -->
+            <div class="space-y-4">
+                
+                <!-- Agenda 1 (Mendatang) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-4 hover:border-emerald-500 transition">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-emerald-100 text-emerald-800 font-bold p-3 rounded-xl text-center min-w-[70px]">
+                            <span class="block text-xl">15</span>
+                            <span class="text-xs uppercase">Agu</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-semibold px-2.5 py-0.5 bg-red-100 text-red-600 rounded-md">Bakti Sosial</span>
+                                <span class="text-xs font-medium text-emerald-600">Akan Datang</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">Kerja Bakti Bersama & Spraying Nyamuk</h3>
+                            <p class="text-sm text-gray-500 mt-1">Pembersihan saluran air dan penderesan jentik nyamuk serentak.</p>
+                            
+                            <div class="flex flex-wrap gap-4 text-xs text-gray-500 mt-3">
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4 text-emerald-600"></i> 07.00 - 11.00 WIB</span>
+                                <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4 text-emerald-600"></i> Area RT 01 - RT 05</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex md:flex-col justify-end gap-2">
+                        <a href="https://wa.me/6285777392726?text=Halo%20Admin,%20saya%20mau%20tanya%20detail%20kegiatan%20Kerja%20Bakti" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium px-4 py-2.5 rounded-lg text-center flex items-center justify-center gap-2 transition">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Hubungi Panitia
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Agenda 2 (Mendatang) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-4 hover:border-emerald-500 transition">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-blue-100 text-blue-800 font-bold p-3 rounded-xl text-center min-w-[70px]">
+                            <span class="block text-xl">20</span>
+                            <span class="text-xs uppercase">Agu</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-semibold px-2.5 py-0.5 bg-blue-100 text-blue-600 rounded-md">Olahraga</span>
+                                <span class="text-xs font-medium text-emerald-600">Akan Datang</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800">Turnamen Bulutangkis Antar RT</h3>
+                            <p class="text-sm text-gray-500 mt-1">Kompetisi tahunan memperingati HUT RI ke-81.</p>
+                            
+                            <div class="flex flex-wrap gap-4 text-xs text-gray-500 mt-3">
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4 text-blue-600"></i> 19.30 WIB - Selesai</span>
+                                <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4 text-blue-600"></i> Lapangan Serbaguna RW 08</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex md:flex-col justify-end gap-2">
+                        <a href="https://wa.me/6285777392726?text=Halo%20Admin,%20saya%20mau%20daftar%20Turnamen%20Bulutangkis" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium px-4 py-2.5 rounded-lg text-center flex items-center justify-center gap-2 transition">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i> Daftar Lomba
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Agenda 3 (Selesai) -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 flex flex-col md:flex-row justify-between md:items-center gap-4 opacity-75">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-gray-200 text-gray-700 font-bold p-3 rounded-xl text-center min-w-[70px]">
+                            <span class="block text-xl">10</span>
+                            <span class="text-xs uppercase">Jul</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-semibold px-2.5 py-0.5 bg-gray-200 text-gray-700 rounded-md">Organisasi</span>
+                                <span class="text-xs font-medium text-gray-500">Telah Selesai</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-700 line-through">Pelatihan Digital Marketing Pemuda</h3>
+                            <p class="text-sm text-gray-500 mt-1">Workshop cara jualan online untuk UMKM anak muda RW 08.</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <a href="dokumentasi.html" class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 text-xs font-medium px-4 py-2.5 rounded-lg text-center flex items-center justify-center gap-2 transition">
+                            <i data-lucide="image" class="w-4 h-4"></i> Lihat Foto
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

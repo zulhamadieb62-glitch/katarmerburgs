@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Dokumentasi - KATAR RW 08</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-emerald-800 text-white flex-shrink-0">
+            <div class="p-5 text-center border-b border-emerald-700">
+                <h1 class="text-xl font-bold tracking-wide">KATAR RW 08</h1>
+                <p class="text-xs text-emerald-200 mt-1">Kelurahan Abadijaya, Kota Depok</p>
+            </div>
+            <nav class="p-4 space-y-2">
+                <!-- Link Kembali ke Beranda -->
+                <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>Beranda</span>
+                </a>
+                <a href="agenda.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                    <span>Agenda & Kegiatan</span>
+                <!-- Menu Aktif saat ini -->
+                <a href="dokumentasi.html" class="flex items-center space-x-3 p-3 rounded-lg bg-emerald-700 text-white font-medium">
+                    <i data-lucide="image" class="w-5 h-5"></i>
+                    <span>Galeri Dokumentasi</span>
+                </a>
+                <a href="index.html#daftar" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <i data-lucide="user-plus" class="w-5 h-5"></i>
+                    <span>Daftar Anggota</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Galeri -->
+        <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+            
+            <!-- Header Top Bar -->
+            <header class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-gray-200 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">📸 Galeri Kegiatan Pemuda</h2>
+                    <p class="text-sm text-gray-500">Dokumentasi momen & program kerja Karang Taruna RW 08 Depok.</p>
+                </div>
+            </header>
+
+            <!-- Tombol Filter Kategori -->
+            <div class="flex flex-wrap gap-2 mb-6">
+                <button onclick="filterGallery('all', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-emerald-700 text-white">
+                    Semua Foto
+                </button>
+                <button onclick="filterGallery('olahraga', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                    Olahraga
+                </button>
+                <button onclick="filterGallery('sosial', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                    Social / Bakti Sosial
+                </button>
+                <button onclick="filterGallery('organisasi', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                    Rapat & Keorganisasian
+                </button>
+            </div>
+
+            <!-- Grid Foto Dokumentasi -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Foto 1 -->
+                <div class="gallery-item bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" data-category="sosial">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80" alt="Kerja Bakti" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="text-xs font-semibold text-emerald-600 uppercase">Bakti Sosial</span>
+                        <h3 class="font-bold text-gray-800 mt-1">Kerja Bakti Lingkungan RT 02</h3>
+                        <p class="text-xs text-gray-400 mt-2">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 10 Juli 2026
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Foto 2 -->
+                <div class="gallery-item bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition" data-category="olahraga">
+                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20210912/pngtree-fresh-outdoor-sports-fitness-badminton-photography-map-image_867180.jpg?auto=format&fit=crop&w=600&q=80" alt="Turnamen Bulutangkis" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="text-xs font-semibold text-blue-600 uppercase">Olahraga</span>
+                        <h3 class="font-bold text-gray-800 mt-1">Pembukaan Turnamen Badminton</h3>
+                        <p class="text-xs text-gray-400 mt-2">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 25 Juni 2026
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Foto 3 -->
+                <div class="gallery-item bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition" data-category="organisasi">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Rapat Bulanan" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="text-xs font-semibold text-amber-600 uppercase">Organisasi</span>
+                        <h3 class="font-bold text-gray-800 mt-1">Rapat Evaluasi Program Kerja</h3>
+                        <p class="text-xs text-gray-400 mt-2">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 01 Juni 2026
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tambahkan foto baru dengan menyalin blok div di atas -->
+
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Filter Select
+        function filterGallery(category, selectedBtn) {
+        // 1. Ambil semua elemen kartu galeri
+        const items = document.querySelectorAll('.gallery-item');
+        
+        // 2. Tampilkan atau sembunyikan kartu sesuai kategori
+        items.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            
+            if (category === 'all' || itemCategory === category) {
+                item.style.display = 'block'; // Tampilkan
+            } else {
+                item.style.display = 'none';  // Sembunyikan
+            }
+        });
+
+        // 3. Update style tombol yang sedang aktif
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => {
+            // Reset style semua tombol ke gaya default (putih)
+            btn.className = "filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200";
+        });
+
+        // Beri style aktif (hijau) pada tombol yang diklik
+        selectedBtn.className = "filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-emerald-700 text-white";
+    }
+        lucide.createIcons();
+    </script>
+</body>
+</html>
