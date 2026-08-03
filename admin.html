@@ -3,246 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - KATAR RW 08</title>
+    <title>Admin Dashboard - Karang Taruna</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Script Proteksi Login -->
-    <script>
-        if (sessionStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "login.html";
-        }
-    </script>
+    <style>
+        /* Mencegah konten muncul sekejap sebelum Firebase selesai mengecek auth */
+        body { display: none; }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col md:flex-row">
+<body class="bg-gray-100 font-sans text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- SIDEBAR -->
-    <aside class="w-full md:w-64 bg-emerald-900 text-white flex-shrink-0">
-        <div class="p-6 border-b border-emerald-800 flex items-center justify-between">
-            <div>
-                <h1 class="font-bold text-lg leading-none">KATAR RW 08</h1>
-                <p class="text-xs text-emerald-300 mt-1">Panel Kelola Admin</p>
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-gray-900 leading-tight">Admin Dashboard</h1>
+                        <p class="text-xs text-gray-500">Panel Kelola Agenda & Galeri</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right hidden sm:block">
+                        <p id="adminName" class="text-sm font-semibold text-gray-800">Memuat...</p>
+                        <p class="text-xs text-emerald-600 font-medium">Administrator</p>
+                    </div>
+                    <button id="btnLogout" class="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Logout">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
+                    </button>
+                </div>
             </div>
-            <button onclick="handleLogout()" class="md:hidden text-emerald-300 hover:text-white">
-                <i data-lucide="log-out" class="w-5 h-5"></i>
-            </button>
         </div>
-        
-        <nav class="p-4 space-y-1">
-            <a href="#kelola-agenda" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-800 text-white text-sm font-medium transition">
-                <i data-lucide="calendar" class="w-4 h-4"></i>
-                <span>Kelola Agenda</span>
-            </a>
-            <a href="#kelola-galeri" class="flex items-center gap-3 px-4 py-3 rounded-xl text-emerald-200 hover:bg-emerald-800 hover:text-white text-sm font-medium transition">
-                <i data-lucide="image" class="w-4 h-4"></i>
-                <span>Kelola Galeri</span>
-            </a>
-            <a href="index.html" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-emerald-200 hover:bg-emerald-800 hover:text-white text-sm font-medium transition">
-                <i data-lucide="external-link" class="w-4 h-4"></i>
-                <span>Lihat Website</span>
-            </a>
-            <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-300 hover:bg-red-900/50 hover:text-red-100 text-sm font-medium transition mt-8">
-                <i data-lucide="log-out" class="w-4 h-4"></i>
-                <span>Keluar (Logout)</span>
-            </button>
-        </nav>
-    </aside>
+    </nav>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 p-6 md:p-8 overflow-y-auto">
-        
-        <!-- Header Top Bar -->
-        <header class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-gray-200 gap-4">
-            <div>
-                <h2 class="text-2xl font-bold text-gray-800">Dashboard Pengelolaan</h2>
-                <p class="text-sm text-gray-500">Tambah, edit, dan hapus agenda serta dokumentasi secara langsung.</p>
-            </div>
-            <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-gray-100 shadow-sm self-start sm:self-auto">
-                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs">
-                    AD
-                </div>
-                <div>
-                    <span id="adminName" class="block text-xs font-bold text-gray-800">Administrator</span>
-                    <span class="block text-[10px] text-gray-400">RW 08 Abadijaya</span>
-                </div>
-            </div>
-        </header>
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
 
-        <!-- SEKSI 1: MANAJEMEN AGENDA -->
-        <section id="kelola-agenda" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-10">
-            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                <div class="flex items-center gap-3">
-                    <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
-                        <i data-lucide="calendar" class="w-5 h-5"></i>
+        <!-- KELOLA AGENDA -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b pb-4 border-gray-200">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="calendar" class="w-5 h-5 text-emerald-600"></i>
+                    <h2 class="text-xl font-bold text-gray-800">Manajemen Agenda Kegiatan</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Form Agenda -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-fit">
+                    <h3 class="text-md font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-600"></i> Form Agenda
+                    </h3>
+                    <form id="formAgenda" class="space-y-4">
+                        <input type="hidden" id="agenda_id">
+                        
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Judul Kegiatan</label>
+                            <input type="text" id="agenda_judul" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tanggal</label>
+                                <input type="date" id="agenda_tanggal" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kategori</label>
+                                <input type="text" id="agenda_kategori" placeholder="misal: Sosial" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Waktu</label>
+                                <input type="text" id="agenda_waktu" placeholder="08:00 - Selesai" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Lokasi</label>
+                                <input type="text" id="agenda_lokasi" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Deskripsi</label>
+                            <textarea id="agenda_deskripsi" rows="3" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                        </div>
+
+                        <div class="flex gap-2 pt-2">
+                            <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 rounded-lg text-sm transition-colors flex justify-center items-center gap-1">
+                                <i data-lucide="save" class="w-4 h-4"></i> <span id="btnTextAgenda">Simpan Agenda</span>
+                            </button>
+                            <button type="button" onclick="resetFormAgenda()" class="px-3 py-2 border text-gray-600 hover:bg-gray-100 rounded-lg text-sm">Reset</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tabel Agenda -->
+                <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-4 border-b bg-gray-50 flex justify-between items-center">
+                        <h3 class="text-sm font-semibold text-gray-700">Daftar Agenda</h3>
+                        <button onclick="loadAgendaData()" class="text-xs text-emerald-600 hover:underline flex items-center gap-1">
+                            <i data-lucide="refresh-cw" class="w-3 h-3"></i> Refresh
+                        </button>
                     </div>
-                    <h3 class="font-bold text-gray-800 text-lg">Kelola Agenda & Kegiatan</h3>
+                    <div class="overflow-x-auto flex-1">
+                        <table class="w-full text-left text-sm text-gray-600">
+                            <thead class="bg-gray-100 text-xs uppercase text-gray-500 border-b">
+                                <tr>
+                                    <th class="p-3">Tanggal</th>
+                                    <th class="p-3">Judul</th>
+                                    <th class="p-3">Kategori</th>
+                                    <th class="p-3">Lokasi</th>
+                                    <th class="p-3 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableAgendaBody" class="divide-y divide-gray-100">
+                                <tr><td colspan="5" class="p-4 text-center text-gray-400">Memuat data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Form Agenda (Tambah & Edit) -->
-            <form id="formAgenda" onsubmit="handleSaveAgenda(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
-                <input type="hidden" id="agenda_id"> <!-- ID untuk kondisi Edit -->
-
-                <div class="md:col-span-2">
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul Agenda / Kegiatan</label>
-                    <input type="text" id="agenda_judul" required placeholder="Contoh: Kerja Bakti Lingkungan RT 02" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Tanggal Kegiatan</label>
-                    <input type="date" id="agenda_tanggal" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Kategori Kegiatan</label>
-                    <select id="agenda_kategori" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none bg-white">
-                        <option value="sosial">Social / Bakti Sosial</option>
-                        <option value="olahraga">Olahraga</option>
-                        <option value="organisasi">Rapat & Keorganisasian</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Waktu / Jam</label>
-                    <input type="text" id="agenda_waktu" placeholder="Contoh: 07.00 - 11.00 WIB" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Lokasi Kegiatan</label>
-                    <input type="text" id="agenda_lokasi" placeholder="Contoh: Lapangan Serbaguna RW 08" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
-                </div>
-
-                <div class="md:col-span-2">
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Deskripsi Ringkas</label>
-                    <textarea id="agenda_deskripsi" rows="2" placeholder="Jelaskan mengenai kegiatan ini..." class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none resize-none"></textarea>
-                </div>
-
-                <div class="md:col-span-2 flex items-center gap-2 pt-2">
-                    <button type="submit" id="btnSubmitAgenda" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center gap-2">
-                        <i data-lucide="save" class="w-4 h-4"></i>
-                        <span id="btnTextAgenda">Simpan Agenda</span>
-                    </button>
-                    <button type="button" onclick="resetFormAgenda()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2.5 rounded-xl font-medium text-sm transition">
-                        Batal / Reset
-                    </button>
-                </div>
-            </form>
-
-            <!-- Tabel Daftar Agenda -->
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-gray-600">
-                    <thead class="bg-gray-100 text-xs uppercase font-semibold text-gray-700">
-                        <tr>
-                            <th class="p-3">Tanggal</th>
-                            <th class="p-3">Judul</th>
-                            <th class="p-3">Kategori</th>
-                            <th class="p-3">Lokasi</th>
-                            <th class="p-3 text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableAgendaBody" class="divide-y border-t">
-                        <tr><td colspan="5" class="p-4 text-center text-gray-400">Memuat data agenda...</td></tr>
-                    </tbody>
-                </table>
             </div>
         </section>
 
-        <!-- SEKSI 2: MANAJEMEN GALERI -->
-        <section id="kelola-galeri" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                <div class="flex items-center gap-3">
-                    <div class="p-2 bg-blue-100 text-blue-700 rounded-lg">
-                        <i data-lucide="image" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="font-bold text-gray-800 text-lg">Kelola Galeri Dokumentasi</h3>
+        <hr class="border-gray-200">
+
+        <!-- KELOLA GALERI -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b pb-4 border-gray-200">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="image" class="w-5 h-5 text-blue-600"></i>
+                    <h2 class="text-xl font-bold text-gray-800">Manajemen Galeri & Dokumentasi</h2>
                 </div>
             </div>
 
-            <!-- Form Galeri (Tambah & Edit) -->
-            <form id="formGaleri" onsubmit="handleSaveGaleri(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
-                <input type="hidden" id="galeri_id">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Form Galeri -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-fit">
+                    <h3 class="text-md font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="plus-circle" class="w-4 h-4 text-blue-600"></i> Form Dokumentasi
+                    </h3>
+                    <form id="formGaleri" class="space-y-4">
+                        <input type="hidden" id="galeri_id">
+                        
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Judul / Kegiatan</label>
+                            <input type="text" id="galeri_judul" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul / Keterangan Foto</label>
-                    <input type="text" id="galeri_judul" required placeholder="Contoh: Pembukaan Turnamen Badminton" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kategori</label>
+                            <input type="text" id="galeri_kategori" placeholder="misal: Kerja Bakti" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">URL Gambar (Google Drive/Imgur/dsb)</label>
+                            <input type="url" id="galeri_url" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="https://...">
+                        </div>
+
+                        <div class="flex gap-2 pt-2">
+                            <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg text-sm transition-colors flex justify-center items-center gap-1">
+                                <i data-lucide="save" class="w-4 h-4"></i> <span id="btnTextGaleri">Simpan Foto</span>
+                            </button>
+                            <button type="button" onclick="resetFormGaleri()" class="px-3 py-2 border text-gray-600 hover:bg-gray-100 rounded-lg text-sm">Reset</button>
+                        </div>
+                    </form>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Kategori Foto</label>
-                    <select id="galeri_kategori" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white">
-                        <option value="sosial">Bakti Sosial</option>
-                        <option value="olahraga">Olahraga</option>
-                        <option value="organisasi">Organisasi</option>
-                    </select>
+                <!-- Tabel Galeri -->
+                <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-4 border-b bg-gray-50 flex justify-between items-center">
+                        <h3 class="text-sm font-semibold text-gray-700">Daftar Foto Dokumentasi</h3>
+                        <button onclick="loadGaleriData()" class="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                            <i data-lucide="refresh-cw" class="w-3 h-3"></i> Refresh
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto flex-1">
+                        <table class="w-full text-left text-sm text-gray-600">
+                            <thead class="bg-gray-100 text-xs uppercase text-gray-500 border-b">
+                                <tr>
+                                    <th class="p-3">Preview</th>
+                                    <th class="p-3">Judul</th>
+                                    <th class="p-3">Kategori</th>
+                                    <th class="p-3 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableGaleriBody" class="divide-y divide-gray-100">
+                                <tr><td colspan="4" class="p-4 text-center text-gray-400">Memuat data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-                <div class="md:col-span-2">
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Link URL Foto</label>
-                    <input type="url" id="galeri_url" required placeholder="https://..." class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                </div>
-
-                <div class="md:col-span-2 flex items-center gap-2 pt-2">
-                    <button type="submit" id="btnSubmitGaleri" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center gap-2">
-                        <i data-lucide="upload" class="w-4 h-4"></i>
-                        <span id="btnTextGaleri">Simpan Foto</span>
-                    </button>
-                    <button type="button" onclick="resetFormGaleri()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2.5 rounded-xl font-medium text-sm transition">
-                        Batal / Reset
-                    </button>
-                </div>
-            </form>
-
-            <!-- Tabel Daftar Dokumentasi -->
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-gray-600">
-                    <thead class="bg-gray-100 text-xs uppercase font-semibold text-gray-700">
-                        <tr>
-                            <th class="p-3">Preview</th>
-                            <th class="p-3">Judul</th>
-                            <th class="p-3">Kategori</th>
-                            <th class="p-3 text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableGaleriBody" class="divide-y border-t">
-                        <tr><td colspan="4" class="p-4 text-center text-gray-400">Memuat data galeri...</td></tr>
-                    </tbody>
-                </table>
             </div>
         </section>
 
     </main>
 
-    <!-- LOGIKA SCRIPT INTEGRASI SCRIPT -->
-    <script>
-        lucide.createIcons();
+    <!-- FIREBASE SDK & INTEGRASI LOGIC -->
+    <script type="module">
+        // 1. Import modul Firebase Auth yang diperlukan
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // GANTI DENGAN URL WEB APP APPS SCRIPT KAMU:
+        // 2. PASTE CONFIG FIREBASE KAMU DI SINI:
+        const firebaseConfig = {
+            apiKey: "AIzaSy...",
+            authDomain: "project-kamu.firebaseapp.com",
+            projectId: "project-kamu",
+            storageBucket: "project-kamu.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcde"
+        };
+
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // 3. Pengecekan Login via Firebase Authentication
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User terautentikasi -> Tampilkan halaman & isi nama admin
+                document.body.style.display = "flex";
+                document.getElementById("adminName").innerText = user.displayName || user.email.split('@')[0];
+                
+                // Render Lucide Icons
+                lucide.createIcons();
+
+                // Load Data awal dari Google Sheets
+                loadAgendaData();
+                loadGaleriData();
+            } else {
+                // User belum login -> Alihkan ke login.html
+                window.location.href = "login.html";
+            }
+        });
+
+        // Event Logout
+        document.getElementById("btnLogout").addEventListener("click", () => {
+            signOut(auth).then(() => {
+                window.location.href = "login.html";
+            }).catch((err) => {
+                alert("Gagal logout: " + err.message);
+            });
+        });
+    </script>
+
+    <!-- LOGIK APPS SCRIPT (AGENDA & GALERI) -->
+    <script>
+        // URL WEB APP APPS SCRIPT UNTUK CRU DATA GOOGLE SHEETS
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx.../exec";
 
         let localAgendaList = [];
         let localGaleriList = [];
 
-        // Inisialisasi Tampilan
         document.addEventListener("DOMContentLoaded", () => {
-            const adminNama = sessionStorage.getItem("adminNama");
-            if (adminNama) document.getElementById("adminName").innerText = adminNama;
-            
-            loadAgendaData();
-            loadGaleriData();
+            document.getElementById("formAgenda").addEventListener("submit", handleSaveAgenda);
+            document.getElementById("formGaleri").addEventListener("submit", handleSaveGaleri);
         });
 
-        function handleLogout() {
-            sessionStorage.removeItem("isLoggedIn");
-            window.location.href = "login.html";
-        }
-
         // =========================================
-        // MANAJEMEN AGENDA (GET, SAVE, EDIT, DELETE)
+        // MANAJEMEN AGENDA
         // =========================================
         async function loadAgendaData() {
             const tableBody = document.getElementById("tableAgendaBody");
+            tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-400">Memuat data...</td></tr>`;
             try {
                 const res = await fetch(`${SCRIPT_URL}?action=getAgenda`);
                 const result = await res.json();
@@ -258,7 +288,7 @@
 
         function renderAgendaTable(data) {
             const tableBody = document.getElementById("tableAgendaBody");
-            if(data.length === 0) {
+            if(!data || data.length === 0) {
                 tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-400">Belum ada agenda tersimpan.</td></tr>`;
                 return;
             }
@@ -327,10 +357,11 @@
         }
 
         // =========================================
-        // MANAJEMEN GALERI (GET, SAVE, EDIT, DELETE)
+        // MANAJEMEN GALERI
         // =========================================
         async function loadGaleriData() {
             const tableBody = document.getElementById("tableGaleriBody");
+            tableBody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Memuat foto...</td></tr>`;
             try {
                 const res = await fetch(`${SCRIPT_URL}?action=getDokumentasi`);
                 const result = await res.json();
@@ -346,14 +377,14 @@
 
         function renderGaleriTable(data) {
             const tableBody = document.getElementById("tableGaleriBody");
-            if(data.length === 0) {
+            if(!data || data.length === 0) {
                 tableBody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Belum ada foto tersimpan.</td></tr>`;
                 return;
             }
 
             tableBody.innerHTML = data.map(item => `
                 <tr class="hover:bg-gray-50">
-                    <td class="p-3"><img src="${item[3]}" class="w-12 h-12 object-cover rounded-lg border"></td>
+                    <td class="p-3"><img src="${item[3]}" class="w-12 h-12 object-cover rounded-lg border" alt="preview"></td>
                     <td class="p-3 font-medium text-gray-800">${item[1]}</td>
                     <td class="p-3"><span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-semibold">${item[2]}</span></td>
                     <td class="p-3 text-center space-x-2">
@@ -407,16 +438,22 @@
             document.getElementById("btnTextGaleri").innerText = "Simpan Foto";
         }
 
-        // Helper fungsi kirim data
+        // =========================================
+        // HELPER API REQUEST (Mencegah CORS Issue)
+        // =========================================
         async function sendPostRequest(payload) {
             try {
                 const response = await fetch(SCRIPT_URL, {
                     method: "POST",
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
                     body: JSON.stringify(payload)
                 });
                 const res = await response.json();
-                alert(res.message);
+                alert(res.message || "Berhasil memproses data!");
             } catch (err) {
+                console.error(err);
                 alert("Gagal memproses permintaan.");
             }
         }
