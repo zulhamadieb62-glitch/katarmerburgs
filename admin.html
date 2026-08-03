@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - KATAR RW 08</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Script Proteksi Login -->
+    <script>
+        if (sessionStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col md:flex-row">
+
+    <!-- SIDEBAR -->
+    <aside class="w-full md:w-64 bg-emerald-900 text-white flex-shrink-0">
+        <div class="p-6 border-b border-emerald-800 flex items-center justify-between">
+            <div>
+                <h1 class="font-bold text-lg leading-none">KATAR RW 08</h1>
+                <p class="text-xs text-emerald-300 mt-1">Panel Kelola Admin</p>
+            </div>
+            <button onclick="handleLogout()" class="md:hidden text-emerald-300 hover:text-white">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+            </button>
+        </div>
+        
+        <nav class="p-4 space-y-1">
+            <a href="#kelola-agenda" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-800 text-white text-sm font-medium transition">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>Kelola Agenda</span>
+            </a>
+            <a href="#kelola-galeri" class="flex items-center gap-3 px-4 py-3 rounded-xl text-emerald-200 hover:bg-emerald-800 hover:text-white text-sm font-medium transition">
+                <i data-lucide="image" class="w-4 h-4"></i>
+                <span>Kelola Galeri</span>
+            </a>
+            <a href="index.html" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-emerald-200 hover:bg-emerald-800 hover:text-white text-sm font-medium transition">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                <span>Lihat Website</span>
+            </a>
+            <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-300 hover:bg-red-900/50 hover:text-red-100 text-sm font-medium transition mt-8">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+                <span>Keluar (Logout)</span>
+            </button>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+        
+        <!-- Header Top Bar -->
+        <header class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-gray-200 gap-4">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Dashboard Pengelolaan</h2>
+                <p class="text-sm text-gray-500">Tambah, edit, dan hapus agenda serta dokumentasi secara langsung.</p>
+            </div>
+            <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-gray-100 shadow-sm self-start sm:self-auto">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs">
+                    AD
+                </div>
+                <div>
+                    <span id="adminName" class="block text-xs font-bold text-gray-800">Administrator</span>
+                    <span class="block text-[10px] text-gray-400">RW 08 Abadijaya</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- SEKSI 1: MANAJEMEN AGENDA -->
+        <section id="kelola-agenda" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-10">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg">Kelola Agenda & Kegiatan</h3>
+                </div>
+            </div>
+
+            <!-- Form Agenda (Tambah & Edit) -->
+            <form id="formAgenda" onsubmit="handleSaveAgenda(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <input type="hidden" id="agenda_id"> <!-- ID untuk kondisi Edit -->
+
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul Agenda / Kegiatan</label>
+                    <input type="text" id="agenda_judul" required placeholder="Contoh: Kerja Bakti Lingkungan RT 02" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Tanggal Kegiatan</label>
+                    <input type="date" id="agenda_tanggal" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Kategori Kegiatan</label>
+                    <select id="agenda_kategori" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none bg-white">
+                        <option value="sosial">Social / Bakti Sosial</option>
+                        <option value="olahraga">Olahraga</option>
+                        <option value="organisasi">Rapat & Keorganisasian</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Waktu / Jam</label>
+                    <input type="text" id="agenda_waktu" placeholder="Contoh: 07.00 - 11.00 WIB" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Lokasi Kegiatan</label>
+                    <input type="text" id="agenda_lokasi" placeholder="Contoh: Lapangan Serbaguna RW 08" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Deskripsi Ringkas</label>
+                    <textarea id="agenda_deskripsi" rows="2" placeholder="Jelaskan mengenai kegiatan ini..." class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none resize-none"></textarea>
+                </div>
+
+                <div class="md:col-span-2 flex items-center gap-2 pt-2">
+                    <button type="submit" id="btnSubmitAgenda" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center gap-2">
+                        <i data-lucide="save" class="w-4 h-4"></i>
+                        <span id="btnTextAgenda">Simpan Agenda</span>
+                    </button>
+                    <button type="button" onclick="resetFormAgenda()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2.5 rounded-xl font-medium text-sm transition">
+                        Batal / Reset
+                    </button>
+                </div>
+            </form>
+
+            <!-- Tabel Daftar Agenda -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-gray-600">
+                    <thead class="bg-gray-100 text-xs uppercase font-semibold text-gray-700">
+                        <tr>
+                            <th class="p-3">Tanggal</th>
+                            <th class="p-3">Judul</th>
+                            <th class="p-3">Kategori</th>
+                            <th class="p-3">Lokasi</th>
+                            <th class="p-3 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableAgendaBody" class="divide-y border-t">
+                        <tr><td colspan="5" class="p-4 text-center text-gray-400">Memuat data agenda...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SEKSI 2: MANAJEMEN GALERI -->
+        <section id="kelola-galeri" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-blue-100 text-blue-700 rounded-lg">
+                        <i data-lucide="image" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-lg">Kelola Galeri Dokumentasi</h3>
+                </div>
+            </div>
+
+            <!-- Form Galeri (Tambah & Edit) -->
+            <form id="formGaleri" onsubmit="handleSaveGaleri(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <input type="hidden" id="galeri_id">
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul / Keterangan Foto</label>
+                    <input type="text" id="galeri_judul" required placeholder="Contoh: Pembukaan Turnamen Badminton" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Kategori Foto</label>
+                    <select id="galeri_kategori" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+                        <option value="sosial">Bakti Sosial</option>
+                        <option value="olahraga">Olahraga</option>
+                        <option value="organisasi">Organisasi</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Link URL Foto</label>
+                    <input type="url" id="galeri_url" required placeholder="https://..." class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+
+                <div class="md:col-span-2 flex items-center gap-2 pt-2">
+                    <button type="submit" id="btnSubmitGaleri" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center gap-2">
+                        <i data-lucide="upload" class="w-4 h-4"></i>
+                        <span id="btnTextGaleri">Simpan Foto</span>
+                    </button>
+                    <button type="button" onclick="resetFormGaleri()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2.5 rounded-xl font-medium text-sm transition">
+                        Batal / Reset
+                    </button>
+                </div>
+            </form>
+
+            <!-- Tabel Daftar Dokumentasi -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-gray-600">
+                    <thead class="bg-gray-100 text-xs uppercase font-semibold text-gray-700">
+                        <tr>
+                            <th class="p-3">Preview</th>
+                            <th class="p-3">Judul</th>
+                            <th class="p-3">Kategori</th>
+                            <th class="p-3 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableGaleriBody" class="divide-y border-t">
+                        <tr><td colspan="4" class="p-4 text-center text-gray-400">Memuat data galeri...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- LOGIKA SCRIPT INTEGRASI SCRIPT -->
+    <script>
+        lucide.createIcons();
+
+        // GANTI DENGAN URL WEB APP APPS SCRIPT KAMU:
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx.../exec";
+
+        let localAgendaList = [];
+        let localGaleriList = [];
+
+        // Inisialisasi Tampilan
+        document.addEventListener("DOMContentLoaded", () => {
+            const adminNama = sessionStorage.getItem("adminNama");
+            if (adminNama) document.getElementById("adminName").innerText = adminNama;
+            
+            loadAgendaData();
+            loadGaleriData();
+        });
+
+        function handleLogout() {
+            sessionStorage.removeItem("isLoggedIn");
+            window.location.href = "login.html";
+        }
+
+        // =========================================
+        // MANAJEMEN AGENDA (GET, SAVE, EDIT, DELETE)
+        // =========================================
+        async function loadAgendaData() {
+            const tableBody = document.getElementById("tableAgendaBody");
+            try {
+                const res = await fetch(`${SCRIPT_URL}?action=getAgenda`);
+                const result = await res.json();
+                
+                if(result.status === "success") {
+                    localAgendaList = result.data;
+                    renderAgendaTable(localAgendaList);
+                }
+            } catch (err) {
+                tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-red-500">Gagal memuat data agenda.</td></tr>`;
+            }
+        }
+
+        function renderAgendaTable(data) {
+            const tableBody = document.getElementById("tableAgendaBody");
+            if(data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-400">Belum ada agenda tersimpan.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = data.map(item => `
+                <tr class="hover:bg-gray-50">
+                    <td class="p-3 font-medium text-gray-800">${item[2]}</td>
+                    <td class="p-3">${item[1]}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">${item[3]}</span></td>
+                    <td class="p-3">${item[5]}</td>
+                    <td class="p-3 text-center space-x-2">
+                        <button onclick="editAgenda('${item[0]}')" class="text-blue-600 hover:text-blue-800 font-medium text-xs">Edit</button>
+                        <button onclick="deleteAgenda('${item[0]}')" class="text-red-600 hover:text-red-800 font-medium text-xs">Hapus</button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        async function handleSaveAgenda(e) {
+            e.preventDefault();
+            const id = document.getElementById("agenda_id").value;
+            const action = id ? "editAgenda" : "addAgenda";
+
+            const payload = {
+                action: action,
+                id: id,
+                judul: document.getElementById("agenda_judul").value,
+                tanggal: document.getElementById("agenda_tanggal").value,
+                kategori: document.getElementById("agenda_kategori").value,
+                waktu: document.getElementById("agenda_waktu").value,
+                lokasi: document.getElementById("agenda_lokasi").value,
+                deskripsi: document.getElementById("agenda_deskripsi").value
+            };
+
+            await sendPostRequest(payload);
+            resetFormAgenda();
+            loadAgendaData();
+        }
+
+        function editAgenda(id) {
+            const item = localAgendaList.find(a => String(a[0]) === String(id));
+            if(!item) return;
+
+            document.getElementById("agenda_id").value = item[0];
+            document.getElementById("agenda_judul").value = item[1];
+            document.getElementById("agenda_tanggal").value = item[2];
+            document.getElementById("agenda_kategori").value = item[3];
+            document.getElementById("agenda_waktu").value = item[4];
+            document.getElementById("agenda_lokasi").value = item[5];
+            document.getElementById("agenda_deskripsi").value = item[6];
+
+            document.getElementById("btnTextAgenda").innerText = "Update Agenda";
+        }
+
+        async function deleteAgenda(id) {
+            if(confirm("Apakah Anda yakin ingin menghapus agenda ini?")) {
+                await sendPostRequest({ action: "deleteAgenda", id: id });
+                loadAgendaData();
+            }
+        }
+
+        function resetFormAgenda() {
+            document.getElementById("formAgenda").reset();
+            document.getElementById("agenda_id").value = "";
+            document.getElementById("btnTextAgenda").innerText = "Simpan Agenda";
+        }
+
+        // =========================================
+        // MANAJEMEN GALERI (GET, SAVE, EDIT, DELETE)
+        // =========================================
+        async function loadGaleriData() {
+            const tableBody = document.getElementById("tableGaleriBody");
+            try {
+                const res = await fetch(`${SCRIPT_URL}?action=getDokumentasi`);
+                const result = await res.json();
+                
+                if(result.status === "success") {
+                    localGaleriList = result.data;
+                    renderGaleriTable(localGaleriList);
+                }
+            } catch (err) {
+                tableBody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-500">Gagal memuat galeri.</td></tr>`;
+            }
+        }
+
+        function renderGaleriTable(data) {
+            const tableBody = document.getElementById("tableGaleriBody");
+            if(data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Belum ada foto tersimpan.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = data.map(item => `
+                <tr class="hover:bg-gray-50">
+                    <td class="p-3"><img src="${item[3]}" class="w-12 h-12 object-cover rounded-lg border"></td>
+                    <td class="p-3 font-medium text-gray-800">${item[1]}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-semibold">${item[2]}</span></td>
+                    <td class="p-3 text-center space-x-2">
+                        <button onclick="editGaleri('${item[0]}')" class="text-blue-600 hover:text-blue-800 font-medium text-xs">Edit</button>
+                        <button onclick="deleteGaleri('${item[0]}')" class="text-red-600 hover:text-red-800 font-medium text-xs">Hapus</button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        async function handleSaveGaleri(e) {
+            e.preventDefault();
+            const id = document.getElementById("galeri_id").value;
+            const action = id ? "editDokumentasi" : "addDokumentasi";
+
+            const payload = {
+                action: action,
+                id: id,
+                judul: document.getElementById("galeri_judul").value,
+                kategori: document.getElementById("galeri_kategori").value,
+                url_foto: document.getElementById("galeri_url").value
+            };
+
+            await sendPostRequest(payload);
+            resetFormGaleri();
+            loadGaleriData();
+        }
+
+        function editGaleri(id) {
+            const item = localGaleriList.find(g => String(g[0]) === String(id));
+            if(!item) return;
+
+            document.getElementById("galeri_id").value = item[0];
+            document.getElementById("galeri_judul").value = item[1];
+            document.getElementById("galeri_kategori").value = item[2];
+            document.getElementById("galeri_url").value = item[3];
+
+            document.getElementById("btnTextGaleri").innerText = "Update Foto";
+        }
+
+        async function deleteGaleri(id) {
+            if(confirm("Apakah Anda yakin ingin menghapus foto ini?")) {
+                await sendPostRequest({ action: "deleteDokumentasi", id: id });
+                loadGaleriData();
+            }
+        }
+
+        function resetFormGaleri() {
+            document.getElementById("formGaleri").reset();
+            document.getElementById("galeri_id").value = "";
+            document.getElementById("btnTextGaleri").innerText = "Simpan Foto";
+        }
+
+        // Helper fungsi kirim data
+        async function sendPostRequest(payload) {
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                });
+                const res = await response.json();
+                alert(res.message);
+            } catch (err) {
+                alert("Gagal memproses permintaan.");
+            }
+        }
+    </script>
+</body>
+</html>
