@@ -1,228 +1,602 @@
 <!doctype html>
 <html lang="id">
     <head>
-        <script>
-            window["__codeletBootstrap__"] = JSON.parse('{"A":"A","B":"20260731-05-8d4b1dd","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');
-        </script>
-        <script src="/_sdk/1c274b9c2bdd3519.telemetry_sdk.js" integrity="sha512-QvDGWM2/VIwB7KXA4cwqkIBlxCdJGd0uO9ksM8wsqNKNiFgewrwdYlGY9ioCTg42Djm5Sw7uha/WH60UzzKOhQ=="></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Portal Karang Taruna RW 08 Depok</title>
         <script src="https://cdn.tailwindcss.com/3.4.17"></script>
         <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
-        <script src="/_sdk/63b5ed99e5b990a7.data_sdk.js" integrity="sha512-fLUGE0rNLPgXS9olxs6QORKg6Diqpi0PSKoNistdAaH/GruBuq5/XhrOdSOcKfqcIIRQ1KvO66J1vCBvvLj4rA=="></script>
         <style>
             body {
                 font-family: 'DM Sans', sans-serif;
             }
-
-            .toast {
-                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
-            }
-
-            @keyframes slideIn {
-                from {
-                    transform: translateY(-20px);
-                    opacity: 0;
-                }
-
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-            }
-
-            @keyframes fadeOut {
-                to {
-                    opacity: 0;
-                }
-            }
         </style>
-        <script src="/_sdk/797e0a7e8af7c7f8.resizing_sdk.js" type="text/javascript" integrity="sha512-giNZj5eBnASPpYcJXEVOn6FguxFDnaH+gnf5nbRfUgfRDqtOdV+5Dna/CwvXiPeR//Plhtbt32CML3VF4+oCLw=="></script>
     </head>
-    <body data-template-id="__page-root" class="w-full min-h-screen" style="background: rgb(243, 244, 246);">
-        <div class="min-h-screen flex flex-col md:flex-row w-full">
-            <!-- Sidebar -->
-            <aside data-template-id="sidebar" class="canva-sidebar w-full md:w-64 flex-shrink-0" style="background: rgb(6, 95, 70);">
-                <div class="p-5 text-center border-b border-emerald-700">
-                    <h1 data-template-id="sidebar-title" class="canva-text font-bold tracking-wide" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 20px;">KATAR RW 08</h1>
-                    <p data-template-id="sidebar-subtitle" class="canva-text text-xs mt-1" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 14px;">Kelurahan Abadijaya, Kota Depok</p>
+    <body class="w-full min-h-screen bg-gray-50 text-gray-800">
+        <div class="min-h-screen flex w-full">
+            
+            <!-- Sidebar Navigation (Fixed Melayang) -->
+            <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-emerald-800 text-white transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
+                <div class="p-5 flex justify-between items-center border-b border-emerald-700">
+                    <div class="flex items-center gap-3">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfMpZNBo_XVYBQm9w-giL6Lna4ODcAzkYjv2Zg8tbXFcADZQPD1R4CsYEqZdHWYXvOOqvPBiGRMg6Khui8LDdKhXOvcDL83st0kuQajD__44Wynv2_SazNWQNcax5mbQLtiSA8Kc2XSBei/s713/logo-karang-taruna.png" alt="Logo Katar" class="w-8 h-8 object-contain">
+                        <div>
+                            <h1 class="font-bold text-lg leading-tight tracking-wide">KATAR RW 08</h1>
+                            <p class="text-[11px] text-emerald-200">Abadijaya, Sukmajaya, Depok</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleSidebar()" class="text-white hover:text-emerald-200 p-1">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
                 </div>
-                <nav class="p-4 space-y-2">
-                    <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg bg-emerald-700 text-white font-medium">
-                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                
+                <nav class="p-4 space-y-2 flex-1">
+                    <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg bg-emerald-700 text-white font-medium shadow-sm">
+                        <i data-lucide="home" class="w-5 h-5"></i>
                         <span>Beranda</span>
-                    </a>
-                    <a href="agenda.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <a href="agenda.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
                         <i data-lucide="calendar" class="w-5 h-5"></i>
-                        <span>Agenda &amp;Kegiatan</span>
+                        <span>Agenda & Kegiatan</span>
                     </a>
-                    <a href="dokumentasi.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <a href="kas.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
+                        <i data-lucide="wallet" class="w-5 h-5"></i>
+                        <span>Kas & Keuangan</span>
+                    </a>
+                    <a href="dokumentasi.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
                         <i data-lucide="image" class="w-5 h-5"></i>
                         <span>Galeri Dokumentasi</span>
                     </a>
-                    <a href="#daftar" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700 text-emerald-100 transition">
+                    <a href="#daftar" onclick="toggleSidebar()" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
                         <i data-lucide="user-plus" class="w-5 h-5"></i>
                         <span>Daftar Anggota</span>
                     </a>
                 </nav>
             </aside>
-            <!-- Main Content -->
-            <main class="flex-1 p-6 md:p-8 overflow-y-auto">
-                <header class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-gray-200 gap-4">
-                    <div>
-                        <h2 data-template-id="welcome-title" class="canva-text font-bold" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 21px;">Selamat Datang, Pemuda RW 08! 👋</h2>
-                        <p data-template-id="welcome-subtitle" class="canva-text text-sm mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Mewujudkan pemuda RW 08 Depok yang aktif, kreatif, dan solid.</p>
+
+            <!-- Overlay Background untuk Sidebar -->
+            <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity"></div>
+
+            <!-- Main Content Container -->
+            <main class="w-full min-h-screen p-4 md:p-8 overflow-y-auto">
+                
+                <!-- Navbar Header Atas -->
+                <header class="flex items-center justify-between pb-4 mb-6 border-b border-gray-200">
+                    <div class="flex items-center gap-3">
+                        <button onclick="toggleSidebar()" class="p-2 rounded-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 shadow-sm focus:outline-none">
+                            <i data-lucide="menu" class="w-6 h-6"></i>
+                        </button>
+                        <h2 class="font-bold text-gray-800 text-lg md:text-xl">Portal Resmi Karang Taruna RW 08</h2>
                     </div>
-                    <div data-template-id="status-badge" class="canva-tag px-4 py-2 rounded-full text-sm font-semibold w-fit" style="background: rgb(209, 250, 229); color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 14px;">Status: Sekretariat Aktif</div>
+                    <div class="px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold bg-emerald-100 text-emerald-800">
+                        Status: Sekretariat Aktif
+                    </div>
                 </header>
-                <!-- Stats Cards -->
-                <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
-                        <div class="p-3 bg-blue-100 text-blue-600 rounded-lg">
-                            <i data-lucide="users" class="w-6 h-6"></i>
+
+                <!-- 1. SUB HERO / BANNER -->
+                <section class="relative bg-gradient-to-r from-emerald-900 to-emerald-700 rounded-2xl text-white p-6 md:p-10 mb-10 shadow-lg overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <div class="inline-flex items-center gap-2 bg-emerald-800/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-emerald-600/50">
+                                <!-- Logo Karang Taruna -->
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfMpZNBo_XVYBQm9w-giL6Lna4ODcAzkYjv2Zg8tbXFcADZQPD1R4CsYEqZdHWYXvOOqvPBiGRMg6Khui8LDdKhXOvcDL83st0kuQajD__44Wynv2_SazNWQNcax5mbQLtiSA8Kc2XSBei/s713/logo-karang-taruna.png" alt="Logo Karang Taruna" class="w-6 h-6 object-contain">
+                                <span class="text-xs font-semibold tracking-wide uppercase text-emerald-100">Karang Taruna RW 08 Depok</span>
+                            </div>
+                            
+                            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">
+                                Pemuda Mudi Solid, Berkarya untuk Lingkungan.
+                            </h1>
+                            
+                            <p class="text-emerald-100 text-sm md:text-base leading-relaxed max-w-xl">
+                                Wadah pengembangan potensi pemuda-pemudi RW 08 Kelurahan Abadijaya, Kota Depok dalam bidang sosial, keolahragaan, kebudayaan, dan kewirausahaan.
+                            </p>
+                            
+                            <div class="pt-2 flex flex-wrap gap-3">
+                                <a href="#daftar" class="bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold px-5 py-2.5 rounded-lg text-sm transition shadow-md">
+                                    Bergabung Sekarang
+                                </a>
+                                <a href="#tentang" class="bg-white/10 hover:bg-white/20 text-white font-medium px-5 py-2.5 rounded-lg text-sm transition border border-white/20">
+                                    Pelajari Lebih Lanjut
+                                </a>
+                            </div>
                         </div>
-                        <div>
-                            <p data-template-id="stat1-label" class="canva-text text-xs font-medium" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Total Anggota</p>
-                            <h3 data-template-id="stat1-value" class="canva-text font-bold" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 20px;">42 Orang</h3>
-                        </div>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
-                        <div class="p-3 bg-emerald-100 text-emerald-600 rounded-lg">
-                            <i data-lucide="check-circle" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <p data-template-id="stat2-label" class="canva-text text-xs font-medium" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Program Kerja</p>
-                            <h3 data-template-id="stat2-value" class="canva-text font-bold" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 20px;">8 Berjalan</h3>
-                        </div>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
-                        <div class="p-3 bg-amber-100 text-amber-600 rounded-lg">
-                            <i data-lucide="calendar-clock" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <p data-template-id="stat3-label" class="canva-text text-xs font-medium" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Agenda Dekat</p>
-                            <h3 data-template-id="stat3-value" class="canva-text font-bold" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 20px;">2 Kegiatan</h3>
+
+                        <!-- Foto Kegiatan Banner -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative rounded-xl overflow-hidden shadow-2xl border-4 border-white/20">
+                                <img src="karangtaruna.jpeg" alt="Kegiatan Pemuda Karang Taruna" class="w-full h-64 md:h-72 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                <p class="absolute bottom-3 left-3 text-xs text-white/90 font-medium">📷 Dokumentasi Kebersamaan Pemuda RW 08</p>
+                            </div>
                         </div>
                     </div>
                 </section>
-                <!-- Agenda & Pengumuman -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8" id="agenda">
-                    <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h3 data-template-id="agenda-title" class="canva-text font-bold mb-4" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 18px;">Agenda &amp;Kegiatan Mendatang</h3>
-                        <div class="space-y-4">
-                            <div class="p-4 border rounded-lg flex justify-between items-center">
-                                <div>
-                                    <span class="text-xs font-semibold px-2 py-1 bg-red-100 text-red-600 rounded-md">Penting</span>
-                                    <h4 data-template-id="agenda1-title" class="canva-text font-bold mt-1" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 14px;">Kerja Bakti Bersama &amp;Spraying Nyamuk</h4>
-                                    <p data-template-id="agenda1-loc" class="canva-text text-sm" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Lokasi: Area RT 01 - RT 05 RW 08</p>
-                                </div>
-                                <div class="text-right">
-                                    <span data-template-id="agenda1-date" class="canva-text block font-bold" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 14px;">15 Agu</span>
-                                    <span data-template-id="agenda1-time" class="canva-text text-xs" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 14px;">07.00 WIB</span>
-                                </div>
+
+                <!-- 2. SUB TENTANG KARANG TARUNA -->
+                <section id="tentang" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 mb-10">
+                    <div class="max-w-3xl mb-6">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md">Mengenal Kami</span>
+                        <h2 class="text-2xl font-bold text-gray-800 mt-2">Tentang Karang Taruna RW 08</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 leading-relaxed text-gray-600 text-sm">
+                        <div class="space-y-3 bg-gray-50 p-5 rounded-xl border border-gray-100">
+                            <div class="flex items-center gap-2 text-emerald-700 font-bold text-base">
+                                <i data-lucide="history" class="w-5 h-5"></i>
+                                <h3>Sejarah Singkat</h3>
                             </div>
-                            <div class="p-4 border rounded-lg flex justify-between items-center">
-                                <div>
-                                    <span class="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-600 rounded-md">Olahraga</span>
-                                    <h4 data-template-id="agenda2-title" class="canva-text font-bold mt-1" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 14px;">Turnamen Bulutangkis Antar RT</h4>
-                                    <p data-template-id="agenda2-loc" class="canva-text text-sm" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Lokasi: Lapangan Serbaguna RW 08</p>
+                            <p>
+                                Berdiri sebagai sarana berkumpul dan berkarya bagi generasi muda di RW 08, Karang Taruna tumbuh dari semangat gotong royong warga lokal. Sejak awal pembentukannya, organisasi ini secara konsisten menjadi penggerak utama berbagai kegiatan kemasyarakatan, mulai dari peringatan HUT RI hingga aksi tanggap sosial warga.
+                            </p>
+                        </div>
+
+                        <div class="space-y-3 bg-gray-50 p-5 rounded-xl border border-gray-100">
+                            <div class="flex items-center gap-2 text-emerald-700 font-bold text-base">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                <h3>Peran di Lingkungan</h3>
+                            </div>
+                            <p>
+                                Karang Taruna RW 08 berperan sebagai pelopor kepemudaan yang aktif membantu pengurus RW dan RT. Kami berfokus pada pemberdayaan pemuda, peningkatan kepedulian lingkungan, pengelolaan kegiatan olahraga/seni, serta penanganan masalah sosial keagamaan di wilayah Abadijaya, Depok.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. SUB PROFIL: VISI, MISI & TUJUAN -->
+                <section id="profil" class="mb-10">
+                    <div class="text-center max-w-2xl mx-auto mb-8">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md">Arah & Landasan Organisasi</span>
+                        <h2 class="text-2xl font-bold text-gray-800 mt-2">Visi, Misi, dan Tujuan</h2>
+                        <p class="text-sm text-gray-500 mt-1">Pedoman Karang Taruna RW 08 dalam melangkah dan memberikan dampak positif.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Card Visi -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between hover:border-emerald-200 transition">
+                            <div>
+                                <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center mb-4">
+                                    <i data-lucide="eye" class="w-6 h-6"></i>
                                 </div>
-                                <div class="text-right">
-                                    <span data-template-id="agenda2-date" class="canva-text block font-bold" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 14px;">20 Agu</span>
-                                    <span data-template-id="agenda2-time" class="canva-text text-xs" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 14px;">19.30 WIB</span>
-                                </div>
+                                <h3 class="text-lg font-bold text-gray-800 mb-2">Visi</h3>
+                                <p class="text-sm text-gray-600 leading-relaxed">
+                                    Mewujudkan generasi muda RW 08 yang bertaqwa, berkarakter unggul, kreatif, mandiri, serta aktif dalam pembangunan sosial dan lingkungan masyarakat.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card Misi -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-200 transition">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-4">
+                                <i data-lucide="list-checks" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-2">Misi</h3>
+                            <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside leading-relaxed">
+                                <li>Mempererat tali silaturahmi antar warga RT 01 - RT 08.</li>
+                                <li>Mengembangkan potensi bakat di bidang seni, olahraga, dan wirausaha.</li>
+                                <li>Menyelenggarakan kegiatan kebersihan & kepedulian lingkungan.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card Tujuan -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-200 transition">
+                            <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center mb-4">
+                                <i data-lucide="compass" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-2">Tujuan</h3>
+                            <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside leading-relaxed">
+                                <li>Menciptakan ruang positif bagi remaja agar terhindar dari pergaulan negatif.</li>
+                                <li>Menjadi mitra strategis pengurus RT & RW dalam kegiatan kemasyarakatan.</li>
+                                <li>Melatih kepemimpinan dan manajerial pemuda sejak dini.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-gray-200 my-8">
+
+                <!-- SUB STATISTIK ORGANISASI -->
+                <section class="mb-10">
+                    <div class="mb-5">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md">Ringkasan Data</span>
+                        <h2 class="text-2xl font-bold text-gray-800 mt-2">Statistik Organisasi</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <!-- Card 1: Total Anggota -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4 hover:border-emerald-200 transition">
+                            <div class="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500">Total Anggota</p>
+                                <h3 class="font-bold text-gray-800 text-2xl">42</h3>
+                                <span class="text-[11px] text-gray-400">Terdaftar di RW 08</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Pengurus Aktif -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4 hover:border-emerald-200 transition">
+                            <div class="p-3 bg-purple-100 text-purple-600 rounded-xl">
+                                <i data-lucide="user-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500">Pengurus Aktif</p>
+                                <h3 class="font-bold text-gray-800 text-2xl">15</h3>
+                                <span class="text-[11px] text-gray-400">Periode 2025-2026</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Program Kerja Berjalan -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4 hover:border-emerald-200 transition">
+                            <div class="p-3 bg-emerald-100 text-emerald-600 rounded-xl">
+                                <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500">Program Kerja</p>
+                                <h3 class="font-bold text-gray-800 text-2xl">0</h3>
+                                <span class="text-[11px] text-gray-400">Sedang Berjalan</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Agenda Bulan Ini -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4 hover:border-emerald-200 transition">
+                            <div class="p-3 bg-amber-100 text-amber-600 rounded-xl">
+                                <i data-lucide="calendar-days" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500">Agenda Bulan Ini</p>
+                                <h3 class="font-bold text-gray-800 text-2xl">0</h3>
+                                <span class="text-[11px] text-gray-400">Bulan Agustus</span>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h3 data-template-id="announce-title" class="canva-text font-bold mb-4" style="color: rgb(31, 41, 55); font-weight: 700; font-style: normal; font-size: 18px;">Pengumuman Internal</h3>
-                        <div class="space-y-3">
-                            <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-emerald-500">
-                                <h5 data-template-id="announce1-title" class="canva-text text-sm font-semibold" style="color: rgb(31, 41, 55); font-weight: 600; font-style: normal; font-size: 12px;">Rapat Rutin Bulanan</h5>
-                                <p data-template-id="announce1-desc" class="canva-text text-xs mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Rapat evaluasi kegiatan bulan ini akan diadakan Sabtu malam di Balai RW.</p>
+                </section>
+
+                <!-- AGENDA Terdekat -->
+                <section id="agenda" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 mb-10">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md">Kegiatan Mendatang</span>
+                            <h2 class="text-2xl font-bold text-gray-800 mt-2">Agenda Terdekat</h2>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Agenda 1 -->
+                        <div class="p-4 rounded-xl border border-gray-100 hover:border-emerald-200 bg-gray-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4 transition">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-emerald-600 text-white p-3 rounded-xl text-center min-w-[60px]">
+                                    <span class="block font-bold text-lg leading-none">15</span>
+                                    <span class="text-[10px] uppercase tracking-wider font-medium">Agu</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-semibold px-2 py-0.5 bg-red-100 text-red-600 rounded-md">Penting / Lingkungan</span>
+                                    <h3 class="font-bold text-gray-800 text-base mt-1">Kerja Bakti Bersama & Spraying Nyamuk</h3>
+                                    <p class="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gray-400"></i>
+                                        Area RT 01 - RT 05 RW 08
+                                    </p>
+                                </div>
                             </div>
-                            <div class="p-3 bg-gray-50 rounded-lg border-l-4 border-amber-500">
-                                <h5 data-template-id="announce2-title" class="canva-text text-sm font-semibold" style="color: rgb(31, 41, 55); font-weight: 600; font-style: normal; font-size: 12px;">Iuran Kas Anggota</h5>
-                                <p data-template-id="announce2-desc" class="canva-text text-xs mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Diharapkan anggota membayar iuran kas bulanan sebesar Rp 10.000 ke Bendahara.</p>
+                            <div class="flex items-center justify-between md:flex-col md:items-end text-xs text-gray-500 border-t md:border-t-0 pt-2 md:pt-0 border-gray-200">
+                                <span class="font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">07:00 WIB</span>
+                                <span class="mt-1">Pakaian Bebas Rapi</span>
+                            </div>
+                        </div>
+
+                        <!-- Agenda 2 -->
+                        <div class="p-4 rounded-xl border border-gray-100 hover:border-emerald-200 bg-gray-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4 transition">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-emerald-600 text-white p-3 rounded-xl text-center min-w-[60px]">
+                                    <span class="block font-bold text-lg leading-none">17</span>
+                                    <span class="text-[10px] uppercase tracking-wider font-medium">Agu</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-semibold px-2 py-0.5 bg-amber-100 text-amber-700 rounded-md">HUT RI</span>
+                                    <h3 class="font-bold text-gray-800 text-base mt-1">Pesta Rakyat & Lomba Kemerdekaan RW 08</h3>
+                                    <p class="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gray-400"></i>
+                                        Lapangan Main RW 08
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between md:flex-col md:items-end text-xs text-gray-500 border-t md:border-t-0 pt-2 md:pt-0 border-gray-200">
+                                <span class="font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">08:00 WIB</span>
+                                <span class="mt-1">Terbuka Untuk Umum</span>
+                            </div>
+                        </div>
+
+                        <!-- Agenda 3 -->
+                        <div class="p-4 rounded-xl border border-gray-100 hover:border-emerald-200 bg-gray-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4 transition">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-emerald-600 text-white p-3 rounded-xl text-center min-w-[60px]">
+                                    <span class="block font-bold text-lg leading-none">20</span>
+                                    <span class="text-[10px] uppercase tracking-wider font-medium">Agu</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-semibold px-2 py-0.5 bg-blue-100 text-blue-600 rounded-md">Olahraga</span>
+                                    <h4 class="font-bold text-gray-800 text-base mt-1">Turnamen Bulutangkis Antar RT</h4>
+                                    <p class="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gray-400"></i>
+                                        Lapangan Serbaguna RW 08
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between md:flex-col md:items-end text-xs text-gray-500 border-t md:border-t-0 pt-2 md:pt-0 border-gray-200">
+                                <span class="font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">19:30 WIB</span>
+                                <span class="mt-1">Kategori Ganda Putra</span>
+                            </div>
+                        </div>
+
+                        <!-- Agenda 4 -->
+                        <div class="p-4 rounded-xl border border-gray-100 hover:border-emerald-200 bg-gray-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4 transition">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-emerald-600 text-white p-3 rounded-xl text-center min-w-[60px]">
+                                    <span class="block font-bold text-lg leading-none">28</span>
+                                    <span class="text-[10px] uppercase tracking-wider font-medium">Agu</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-semibold px-2 py-0.5 bg-purple-100 text-purple-600 rounded-md">Internal</span>
+                                    <h3 class="font-bold text-gray-800 text-base mt-1">Rapat Evaluasi Bulanan & Kas Organisasi</h3>
+                                    <p class="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gray-400"></i>
+                                        Balai Warga RW 08
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between md:flex-col md:items-end text-xs text-gray-500 border-t md:border-t-0 pt-2 md:pt-0 border-gray-200">
+                                <span class="font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">20:00 WIB</span>
+                                <span class="mt-1">Wajib Seluruh Pengurus</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Form Pendaftaran Anggota Baru -->
-<section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8" id="daftar">
-    <h3 class="text-lg font-bold text-gray-800 mb-2">Pendaftaran Anggota Baru</h3>
-    <p class="text-sm text-gray-500 mb-6">Khusus pemuda/pemudi usia 15-30 tahun yang berdomisili di RW 08 Depok.</p>
-    
-    <form id="formPendaftaran" onsubmit="submitToGoogleSheet(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
-            <input type="text" name="nama" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: Ahmad Rizky">
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Nomor WhatsApp</label>
-            <input type="tel" name="whatsapp" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="0812xxxxxxxx">
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">RT / Wilayah</label>
-            <select name="rt" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
-                <option value="RT 01">RT 01</option>
-                <option value="RT 02">RT 02</option>
-                <option value="RT 03">RT 03</option>
-                <option value="RT 04">RT 04</option>
-                <option value="RT 05">RT 05</option>
-                <option value="RT 06">RT 06</option>
-                <option value="RT 07">RT 07</option>
-                <option value="RT 08">RT 08</option>
-            </select>
-        </div>
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Minat / Keahlian</label>
-            <input type="text" name="keahlian" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Media/Desain, Olahraga, Humas, dll.">
-        </div>
-        <div class="md:col-span-2 mt-2">
-            <button type="submit" id="btnSubmit" class="bg-emerald-600 text-white px-6 py-2.5 rounded-lg hover:bg-emerald-700 font-medium text-sm transition flex items-center gap-2">
-                <span>Kirim Pendaftaran</span>
-            </button>
-        </div>
-    </form>
-</section>
+                    <!-- Tombol Lihat Semua Agenda -->
+                    <div>
+                        <a href="agenda.html" class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-semibold px-4 py-2.5 rounded-lg text-sm transition self-start sm:self-auto border border-emerald-200">
+                            <span>Lihat Semua Agenda</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </section>
 
-<!-- JavaScript untuk Pengiriman Data -->
-<script>
-    // Jalankan render ikon lucide saat halaman dimuat
-    lucide.createIcons();
-    
-    // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT KAMU DI SINI
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbz3ma8mXx18TN76K-_Z8fqTEeG5VGfT6BGBxF13NPB9hySEGku41xvNzihrOoPlPZVz/exec';
+                <!--Struktur Pengurus-->
+                <section id="pengurus" class="mb-10">
+                    <div class="mb-6">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md">Kepemimpinan</span>
+                        <h2 class="text-2xl font-bold text-gray-800 mt-2">Struktur Pengurus Inti</h2>
+                        <p class="text-sm text-gray-500 mt-1">Penggerak utama kegiatan Karang Taruna RW 08 Periode 2025-2026.</p>
+                    </div>
 
-    function submitToGoogleSheet(event) {
-        event.preventDefault();
-        
-        const form = document.getElementById('formPendaftaran');
-        const btnSubmit = document.getElementById('btnSubmit');
-        
-        // Ubah status tombol saat mengirim
-        btnSubmit.disabled = true;
-        btnSubmit.innerHTML = 'Mengirim...';
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Ketua -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-emerald-200 transition">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center text-emerald-800 font-bold text-xl overflow-hidden">
+                                <!-- Foto Pengurus (Bisa diganti tag <img>) -->
+                                <i data-lucide="user" class="w-10 h-10 text-emerald-600"></i>
+                            </div>
+                            <span class="inline-block px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[11px] font-semibold rounded-full mb-1">Ketua</span>
+                            <h3 class="font-bold text-gray-800 text-base">Budi</h3>
+                        </div>
 
-        const formData = new FormData(form);
+                        <!-- Wakil Ketua -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-emerald-200 transition">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center text-emerald-800 font-bold text-xl overflow-hidden">
+                                <i data-lucide="user" class="w-10 h-10 text-emerald-600"></i>
+                            </div>
+                            <span class="inline-block px-2.5 py-0.5 bg-blue-100 text-blue-800 text-[11px] font-semibold rounded-full mb-1">Wakil Ketua</span>
+                            <h3 class="font-bold text-gray-800 text-base">Heri</h3>
+                        </div>
 
-        fetch(scriptURL, { method: 'POST', body: formData})
-            .then(response => {
-                alert('Berhasil! Data pendaftaran Anda telah tersimpan.');
-                btnSubmit.disabled = false;
-                btnSubmit.innerHTML = '<span>Kirim Pendaftaran</span>';
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                alert('Gagal mengirim data. Silakan coba lagi.');
-                btnSubmit.disabled = false;
-                btnSubmit.innerHTML = '<span>Kirim Pendaftaran</span>';
-            });
-        }
-    </script>
+                        <!-- Sekretaris 1 -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-emerald-200 transition">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center text-emerald-800 font-bold text-xl overflow-hidden">
+                                <i data-lucide="user" class="w-10 h-10 text-emerald-600"></i>
+                            </div>
+                            <span class="inline-block px-2.5 py-0.5 bg-purple-100 text-purple-800 text-[11px] font-semibold rounded-full mb-1">Sekretaris 1</span>
+                            <h3 class="font-bold text-gray-800 text-base">Gilang</h3>
+                        </div>
+
+                        <!-- Sekretaris 2 -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-emerald-200 transition">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center text-emerald-800 font-bold text-xl overflow-hidden">
+                                <i data-lucide="user" class="w-10 h-10 text-emerald-600"></i>
+                            </div>
+                            <span class="inline-block px-2.5 py-0.5 bg-purple-100 text-purple-800 text-[11px] font-semibold rounded-full mb-1">Sekretaris 2</span>
+                            <h3 class="font-bold text-gray-800 text-base">Gendis</h3>
+                        </div>
+
+                        <!-- Bendahara 1 -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-emerald-200 transition">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center text-emerald-800 font-bold text-xl overflow-hidden">
+                                <i data-lucide="user" class="w-10 h-10 text-emerald-600"></i>
+                            </div>
+                            <span class="inline-block px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[11px] font-semibold rounded-full mb-1">Bendahara 1</span>
+                            <h3 class="font-bold text-gray-800 text-base">Haruki</h3>
+                        </div>
+
+                        <!-- Bendahara 2 -->
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-emerald-200 transition">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center text-emerald-800 font-bold text-xl overflow-hidden">
+                                <i data-lucide="user" class="w-10 h-10 text-emerald-600"></i>
+                            </div>
+                            <span class="inline-block px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[11px] font-semibold rounded-full mb-1">Bendahara 2</span>
+                            <h3 class="font-bold text-gray-800 text-base">Zora</h3>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- FORM PENDAFTARAN -->
+                <section class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 mb-8" id="daftar">
+                    <div class="mb-6">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md">Mari Bergabung</span>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-2">Pendaftaran Anggota Baru</h3>
+                        <p class="text-sm text-gray-500 mt-1">Khusus pemuda/pemudi usia 15–30 tahun yang berdomisili di RW 08 Depok.</p>
+                    </div>
+                    
+                    <form id="formPendaftaran" onsubmit="submitToGoogleSheet(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Nama Lengkap -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                            <input type="text" name="nama" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Contoh: Ahmad Rizky">
+                        </div>
+
+                        <!-- Nomor WhatsApp -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nomor WhatsApp <span class="text-red-500">*</span></label>
+                            <input type="tel" name="whatsapp" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="0812xxxxxxxx">
+                        </div>
+
+                        <!-- RT / Wilayah -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">RT / Wilayah <span class="text-red-500">*</span></label>
+                            <select name="rt" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm bg-white">
+                                <option value="" disabled selected>Pilih RT Tempat Tinggal</option>
+                                <option value="RT 01">RT 01</option>
+                                <option value="RT 02">RT 02</option>
+                                <option value="RT 03">RT 03</option>
+                                <option value="RT 04">RT 04</option>
+                                <option value="RT 05">RT 05</option>
+                                <option value="RT 06">RT 06</option>
+                                <option value="RT 07">RT 07</option>
+                                <option value="RT 08">RT 08</option>
+                            </select>
+                        </div>
+
+                        <!-- Minat / Keahlian -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Minat / Keahlian</label>
+                            <input type="text" name="keahlian" class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm" placeholder="Media/Desain, Olahraga, Humas, dll.">
+                        </div>
+
+                        <!-- Alasan Bergabung (Baru) -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Alasan Ingin Bergabung <span class="text-red-500">*</span></label>
+                            <textarea name="alasan" rows="3" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm resize-none" placeholder="Ceritakan motivasi atau hal yang ingin kamu kontribusikan untuk Karang Taruna RW 08..."></textarea>
+                        </div>
+
+                        <!-- Checkbox Persetujuan (Baru) -->
+                        <div class="md:col-span-2 mt-1">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" name="persetujuan" required class="mt-1 w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500 accent-emerald-600">
+                                <span class="text-xs text-gray-600 leading-relaxed">
+                                    Saya menyatakan bersedia menjadi anggota Karang Taruna RW 08, siap berperan aktif dalam kegiatan kemasyarakatan, serta mematuhi aturan organisasi yang berlaku. <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Tombol Submit -->
+                        <div class="md:col-span-2 mt-3">
+                            <button type="submit" id="btnSubmit" class="bg-emerald-600 text-white px-6 py-2.5 rounded-lg hover:bg-emerald-700 font-medium text-sm transition flex items-center gap-2">
+                                <span>Kirim Pendaftaran</span>
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!--Kontak-->
+                <section id="kontak" class="mb-10">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md">Hubungi Kami</span>
+                            <h2 class="text-2xl font-bold text-gray-800 mt-2">Kontak & Media Sosial</h2>
+                            <p class="text-sm text-gray-500 mt-1">Punya pertanyaan, saran, atau ingin berkolaborasi? Silakan hubungi kami melalui saluran berikut.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Card WhatsApp -->
+                            <a href="https://wa.me/6285777392726" target="_blank" class="p-5 rounded-xl border border-gray-100 hover:border-emerald-300 hover:shadow-md transition bg-emerald-50/30 flex items-center space-x-4 group">
+                                <div class="p-3 bg-emerald-100 text-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition">
+                                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-semibold text-gray-400 block">WhatsApp / Contact Person</span>
+                                    <span class="font-bold text-gray-800 text-sm group-hover:text-emerald-700 transition">+62 857-7739-2726</span>
+                                </div>
+                            </a>
+
+                            <!-- Card Email -->
+                            <a href="mailto:karangtaruna.rw08@gmail.com" class="p-5 rounded-xl border border-gray-100 hover:border-emerald-300 hover:shadow-md transition bg-emerald-50/30 flex items-center space-x-4 group">
+                                <div class="p-3 bg-emerald-100 text-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition">
+                                    <i data-lucide="mail" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-semibold text-gray-400 block">Email Resmi</span>
+                                    <span class="font-bold text-gray-800 text-sm group-hover:text-emerald-700 transition">karangtarunamerburgs08@gmail.com</span>
+                                </div>
+                            </a>
+
+                            <!-- Card Instagram -->
+                            <a href="https://instagram.com/katarmerburgs" target="_blank" class="p-5 rounded-xl border border-gray-100 hover:border-emerald-300 hover:shadow-md transition bg-emerald-50/30 flex items-center space-x-4 group">
+                                <div class="p-3 bg-emerald-100 text-emerald-600 rounded-xl group-hover:bg-emerald-600 group-hover:text-white transition">
+                                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-semibold text-gray-400 block">Instagram</span>
+                                    <span class="font-bold text-gray-800 text-sm group-hover:text-emerald-700 transition">@katarmerburgs</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!--Footer-->
+                <footer class="bg-white border-t border-gray-100 py-6 mt-12">
+                    <div class="max-w-6xl mx-auto px-4 text-center">
+                        <p class="text-xs text-gray-500">
+                            &copy; 2026 <span class="font-semibold text-gray-700">Karang Taruna RW 08 Abadijaya</span>. Hak Cipta Dilindungi Undang-Undang.
+                        </p>
+                    </div>
+                </footer>
+            </main>
+        </div>
+
+        <script>
+            // Render Lucide Icons
+            lucide.createIcons();
+
+            // Toggle Sidebar Menu
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('sidebarOverlay');
+                
+                sidebar.classList.toggle('-translate-x-full');
+                
+                if (overlay.classList.contains('hidden')) {
+                    overlay.classList.remove('hidden');
+                } else {
+                    overlay.classList.add('hidden');
+                }
+            }
+
+            // Integrasi Google Sheets Form
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz3ma8mXx18TN76K-_Z8fqTEeG5VGfT6BGBxF13NPB9hySEGku41xvNzihrOoPlPZVz/exec';
+
+            function submitToGoogleSheet(event) {
+                event.preventDefault();
+                
+                const form = document.getElementById('formPendaftaran');
+                const btnSubmit = document.getElementById('btnSubmit');
+                
+                btnSubmit.disabled = true;
+                btnSubmit.innerHTML = 'Mengirim...';
+
+                const formData = new FormData(form);
+
+                fetch(scriptURL, { method: 'POST', body: formData})
+                    .then(response => {
+                        alert('Berhasil! Data pendaftaran Anda telah tersimpan.');
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerHTML = '<span>Kirim Pendaftaran</span>';
+                        form.reset();
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        alert('Gagal mengirim data. Silakan coba lagi.');
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerHTML = '<span>Kirim Pendaftaran</span>';
+                    });
+            }
+        </script>
     </body>
 </html>
