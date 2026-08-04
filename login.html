@@ -117,13 +117,11 @@
             try {
                 // Verifikasi via Firebase Auth
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                
+
                 alertBox.className = "mb-4 p-3 rounded-lg text-xs font-medium border bg-emerald-50 text-emerald-700 border-emerald-200 block";
                 alertBox.innerText = "Login Berhasil! Mengalihkan...";
 
-                setTimeout(() => {
-                    window.location.href = "admin.html";
-                }, 1000);
+                window.location.href = "admin.html";
 
             } catch (error) {
                 console.error("Login Error:", error);

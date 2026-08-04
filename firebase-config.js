@@ -10,7 +10,8 @@ const firebaseConfig = {
   projectId: "katar-rw08-app",
   storageBucket: "katar-rw08-app.firebasestorage.app",
   messagingSenderId: "338794868113",
-  appId: "1:338794868113:web:856651578647690de97e30"
+  appId: "1:338794868113:web:856651578647690de97e30",
+  measurementId: "G-5VQRQZHJG8"
 };
 
 // Inisialisasi Firebase

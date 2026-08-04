@@ -205,47 +205,31 @@
 
     </main>
 
-    <!-- FIREBASE SDK & INTEGRASI LOGIC -->
+    <!-- FIREBASE AUTHENTICATION (MODULE) -->
     <script type="module">
-        // 1. Import modul Firebase Auth yang diperlukan
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        // 1. Import 'auth' dari file config yang sama persis
+        import { auth } from "./firebase-config.js";
+        import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // 2. PASTE CONFIG FIREBASE KAMU DI SINI:
-        const firebaseConfig = {
-            apiKey: "AIzaSy...",
-            authDomain: "project-kamu.firebaseapp.com",
-            projectId: "project-kamu",
-            storageBucket: "project-kamu.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcde"
-        };
-
-        // Inisialisasi Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        // 3. Pengecekan Login via Firebase Authentication
+        // 2. Gunakan Listener Auth
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User terautentikasi -> Tampilkan halaman & isi nama admin
+                // User benar-benar aktif / terautentikasi
                 document.body.style.display = "flex";
                 document.getElementById("adminName").innerText = user.displayName || user.email.split('@')[0];
                 
-                // Render Lucide Icons
-                lucide.createIcons();
-
-                // Load Data awal dari Google Sheets
-                loadAgendaData();
-                loadGaleriData();
+                // Inisialisasi ikon & load data aman dengan pengecekan ketersediaan fungsi
+                if (window.lucide) lucide.createIcons();
+                if (typeof window.loadAgendaData === "function") window.loadAgendaData();
+                if (typeof window.loadGaleriData === "function") window.loadGaleriData();
             } else {
-                // User belum login -> Alihkan ke login.html
+                // Jika benar-benar tidak ada user, lempar ke login
                 window.location.href = "login.html";
             }
         });
 
         // Event Logout
-        document.getElementById("btnLogout").addEventListener("click", () => {
+        document.getElementById("btnLogout")?.addEventListener("click", () => {
             signOut(auth).then(() => {
                 window.location.href = "login.html";
             }).catch((err) => {
@@ -254,10 +238,10 @@
         });
     </script>
 
-    <!-- LOGIK APPS SCRIPT (AGENDA & GALERI) -->
+    <!-- LOGIKA APPS SCRIPT (AGENDA & GALERI) -->
     <script>
-        // URL WEB APP APPS SCRIPT UNTUK CRU DATA GOOGLE SHEETS
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx.../exec";
+        // URL WEB APP APPS SCRIPT UNTUK CRUD DATA GOOGLE SHEETS
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyv6-9RZMe51Zr1S4qLkVqobR_z9qN1_-pJVxOdX9kVM4vQLN-VU84RyO6lVgqsj9E/exec";
 
         let localAgendaList = [];
         let localGaleriList = [];
