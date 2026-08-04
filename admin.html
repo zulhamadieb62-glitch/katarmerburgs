@@ -205,30 +205,36 @@
 
     </main>
 
-    <!-- FIREBASE AUTHENTICATION (MODULE) -->
+    <!-- FIREBASE & APPS SCRIPT LOGIC (SATU MODULE) -->
     <script type="module">
-        // 1. Import 'auth' dari file config yang sama persis
         import { auth } from "./firebase-config.js";
         import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // 2. Gunakan Listener Auth
+        // URL WEB APP APPS SCRIPT
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyv6-9RZMe51Zr1S4qLkVqobR_z9qN1_-pJVxOdX9kVM4vQLN-VU84RyO6lVgqsj9E/exec";
+
+        let localAgendaList = [];
+        let localGaleriList = [];
+
+        // 1. Pengecekan Auth Firebase
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User benar-benar aktif / terautentikasi
+                // User terverifikasi
                 document.body.style.display = "flex";
                 document.getElementById("adminName").innerText = user.displayName || user.email.split('@')[0];
                 
-                // Inisialisasi ikon & load data aman dengan pengecekan ketersediaan fungsi
                 if (window.lucide) lucide.createIcons();
-                if (typeof window.loadAgendaData === "function") window.loadAgendaData();
-                if (typeof window.loadGaleriData === "function") window.loadGaleriData();
+
+                // Panggil data setelah user dipastikan terautentikasi
+                loadAgendaData();
+                loadGaleriData();
             } else {
-                // Jika benar-benar tidak ada user, lempar ke login
+                // Jika tidak ada user, redirect ke login
                 window.location.href = "login.html";
             }
         });
 
-        // Event Logout
+        // Logout
         document.getElementById("btnLogout")?.addEventListener("click", () => {
             signOut(auth).then(() => {
                 window.location.href = "login.html";
@@ -236,31 +242,31 @@
                 alert("Gagal logout: " + err.message);
             });
         });
-    </script>
 
-    <!-- LOGIKA APPS SCRIPT (AGENDA & GALERI) -->
-    <script>
-        // URL WEB APP APPS SCRIPT UNTUK CRUD DATA GOOGLE SHEETS
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyv6-9RZMe51Zr1S4qLkVqobR_z9qN1_-pJVxOdX9kVM4vQLN-VU84RyO6lVgqsj9E/exec";
+        // Attach event listener ke Form
+        document.getElementById("formAgenda").addEventListener("submit", handleSaveAgenda);
+        document.getElementById("formGaleri").addEventListener("submit", handleSaveGaleri);
 
-        let localAgendaList = [];
-        let localGaleriList = [];
-
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("formAgenda").addEventListener("submit", handleSaveAgenda);
-            document.getElementById("formGaleri").addEventListener("submit", handleSaveGaleri);
-        });
+        // Make functions accessible from HTML inline attributes (onclick="...")
+        window.loadAgendaData = loadAgendaData;
+        window.loadGaleriData = loadGaleriData;
+        window.resetFormAgenda = resetFormAgenda;
+        window.resetFormGaleri = resetFormGaleri;
+        window.editAgenda = editAgenda;
+        window.deleteAgenda = deleteAgenda;
+        window.editGaleri = editGaleri;
+        window.deleteGaleri = deleteGaleri;
 
         // =========================================
         // MANAJEMEN AGENDA
         // =========================================
         async function loadAgendaData() {
             const tableBody = document.getElementById("tableAgendaBody");
+            if (!tableBody) return;
             tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-400">Memuat data...</td></tr>`;
             try {
                 const res = await fetch(`${SCRIPT_URL}?action=getAgenda`);
                 const result = await res.json();
-                
                 if(result.status === "success") {
                     localAgendaList = result.data;
                     renderAgendaTable(localAgendaList);
@@ -345,11 +351,11 @@
         // =========================================
         async function loadGaleriData() {
             const tableBody = document.getElementById("tableGaleriBody");
+            if (!tableBody) return;
             tableBody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Memuat foto...</td></tr>`;
             try {
                 const res = await fetch(`${SCRIPT_URL}?action=getDokumentasi`);
                 const result = await res.json();
-                
                 if(result.status === "success") {
                     localGaleriList = result.data;
                     renderGaleriTable(localGaleriList);
@@ -423,7 +429,7 @@
         }
 
         // =========================================
-        // HELPER API REQUEST (Mencegah CORS Issue)
+        // HELPER API REQUEST
         // =========================================
         async function sendPostRequest(payload) {
             try {
