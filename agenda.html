@@ -13,7 +13,7 @@
 
     <div class="min-h-screen flex flex-col md:flex-row">
         
-        <!-- Sidebar Navigation (Fixed Melayang) -->
+        <!-- Sidebar Navigation -->
         <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-emerald-800 text-white transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
             <div class="p-5 flex justify-between items-center border-b border-emerald-700">
                 <div class="flex items-center gap-3">
@@ -29,10 +29,11 @@
             </div>
                 
             <nav class="p-4 space-y-2 flex-1">
-                <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg bg-emerald-700 text-white font-medium shadow-sm">
+                <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
                     <i data-lucide="home" class="w-5 h-5"></i>
                     <span>Beranda</span>
-                <a href="agenda.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
+                </a>
+                <a href="agenda.html" class="flex items-center space-x-3 p-3 rounded-lg bg-emerald-700 text-white font-medium shadow-sm">
                     <i data-lucide="calendar" class="w-5 h-5"></i>
                     <span>Agenda & Kegiatan</span>
                 </a>
@@ -40,18 +41,18 @@
                     <i data-lucide="image" class="w-5 h-5"></i>
                     <span>Galeri Dokumentasi</span>
                 </a>
-                <a href="index.html #daftar" onclick="toggleSidebar()" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
+                <a href="index.html#daftar" onclick="toggleSidebar()" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-700/60 text-emerald-100 transition">
                     <i data-lucide="user-plus" class="w-5 h-5"></i>
                     <span>Daftar Anggota</span>
                 </a>
-               </nav>
+            </nav>
         </aside>
 
-            <!-- Overlay Background untuk Sidebar -->
-            <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity"></div>
+        <!-- Overlay Background untuk Sidebar -->
+        <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity"></div>
 
-            <!-- Main Content Container -->
-            <main class="w-full min-h-screen p-4 md:p-8 overflow-y-auto">
+        <!-- Main Content Container -->
+        <main class="w-full min-h-screen p-4 md:p-8 overflow-y-auto">
             
             <!-- Header Top Bar -->
             <header class="flex items-center justify-between pb-4 mb-6 border-b border-gray-200 gap-4">
@@ -59,103 +60,51 @@
                     <button onclick="toggleSidebar()" class="p-2 rounded-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 shadow-sm focus:outline-none">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
-                	<h2 class="text-2xl font-bold text-gray-800">📅 Jadwal Agenda & Kegiatan</h2>
-                 	<p class="text-sm text-gray-500">Program kerja & kegiatan pemuda Karang Taruna RW 08 Abadijaya.</p>
-            	</div>
-        	</header>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">📅 Jadwal Agenda & Kegiatan</h2>
+                        <p class="text-sm text-gray-500">Program kerja & kegiatan pemuda Karang Taruna RW 08 Abadijaya.</p>
+                    </div>
+                </div>
+            </header>
 
-            <!-- Filter & Search Bar -->
-           <div class="flex flex-wrap gap-2 mb-6">
-                <button onclick="filterGallery('semua', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-emerald-700 text-white">
+            <!-- Filter Bar -->
+            <div class="flex flex-wrap gap-2 mb-6">
+                <button onclick="filterAgenda('semua', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-emerald-700 text-white">
                     Semua Kegiatan
                 </button>
-                <button onclick="filterGallery('mendatang', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                <button onclick="filterAgenda('mendatang', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
                     Mendatang
                 </button>
-                <button onclick="filterGallery('selesai', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
+                <button onclick="filterAgenda('selesai', this)" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-200">
                     Selesai
                 </button>
             </div>
 
-            <!-- Daftar Card Agenda -->
-            <div class="space-y-4">
-                
-            <!-- Wadah Agenda -->
+            <!-- Wadah Tempat Agenda Ditampilkan -->
             <div id="agenda-container" class="space-y-4">
                 <p class="text-center text-gray-400 py-8">Memuat agenda kegiatan...</p>
             </div>
+            
         </main>
     </div>
 
     <script>
         lucide.createIcons();
 
-        // Toggle Sidebar Menu
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzojwERUTe7oUEiTAMXlRxNk8nwnYJWivI-d4mICf8O9iXReuMYpK28bHJsxd13EvXp/exec";
+        
+        let allAgendaData = [];
+
+        // Toggle Sidebar
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
-                
+            
             sidebar.classList.toggle('-translate-x-full');
-                
-               if (overlay.classList.contains('hidden')) {
-                overlay.classList.remove('hidden');
-            } else {
-                  overlay.classList.add('hidden');
-             }
-         }
-
-        //Sort Agenda
-        function sortAgenda() {
-            const container = document.getElementById('agenda-container');
-            if (!container) return;
-
-            // 1. Ambil semua elemen item agenda sebagai array
-            const items = Array.from(container.querySelectorAll('.agenda-item'));
-
-            // 2. Urutkan item berdasarkan nilai atribut data-date (Ascending / Dari terdekat)
-            items.sort((a, b) => {
-                const dateA = new Date(a.getAttribute('data-date'));
-                const dateB = new Date(b.getAttribute('data-date'));
-                return dateA - dateB; // Untuk terurut dari yang paling dekat -> terjauh
-            });
-
-            // 3. Masukkan kembali item yang sudah terurut ke dalam container HTML
-            items.forEach(item => container.appendChild(item));
+            overlay.classList.toggle('hidden');
         }
 
-            // Jalankan pengurutan otomatis saat halaman pertama kali dibuka
-            document.addEventListener('DOMContentLoaded', sortAgenda);
-
-            function filterGallery(category, btnElement) {
-                // 1. Ambil semua tombol filter dan item agenda
-                const filterButtons = document.querySelectorAll('.filter-btn');
-                const agendaItems = document.querySelectorAll('[data-category]');
-
-                // 2. Reset tampilan semua tombol menjadi gaya tombol tidak aktif (bg-white)
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('bg-emerald-700', 'text-white');
-                    btn.classList.add('bg-white', 'text-gray-600');
-                });
-
-                // 3. Aktifkan tombol yang sedang diklik (bg-emerald-700)
-                if (btnElement) {
-                    btnElement.classList.remove('bg-white', 'text-gray-600');
-                    btnElement.classList.add('bg-emerald-700', 'text-white');
-                }
-
-                // 4. Sembunyikan atau tampilkan item agenda berdasarkan data-category
-                agendaItems.forEach(item => {
-                    const itemCategory = item.getAttribute('data-category');
-                    
-                    if (category === 'semua' || itemCategory === category) {
-                        item.style.display = 'flex'; // Atau 'block' sesuai dengan layout card kamu
-                    } else {
-                        item.style.display = 'none';
-                    }
-
-                // URL Web App Google Apps Script Kamu
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzojwERUTe7oUEiTAMXlRxNk8nwnYJWivI-d4mICf8O9iXReuMYpK28bHJsxd13EvXp/exec";
-
+        // Ambil Data dari Google Sheets saat Halaman Dimuat
         document.addEventListener("DOMContentLoaded", fetchAgendaData);
 
         async function fetchAgendaData() {
@@ -165,36 +114,51 @@
                 const response = await fetch(`${SCRIPT_URL}?action=getAgenda`);
                 const result = await response.json();
 
-                if (result.status === "success" && result.data.length > 0) {
-                    renderAgenda(result.data);
+                if (result.status === "success" && Array.isArray(result.data) && result.data.length > 0) {
+                    allAgendaData = result.data;
+                    renderAgenda(allAgendaData);
                 } else {
                     container.innerHTML = `<p class="text-center text-gray-500 py-8">Belum ada agenda kegiatan saat ini.</p>`;
                 }
             } catch (error) {
                 console.error("Error fetching agenda:", error);
-                container.innerHTML = `<p class="text-center text-red-500 py-8">Gagal memuat agenda kegiatan.</p>`;
+                container.innerHTML = `<p class="text-center text-red-500 py-8">Gagal memuat agenda kegiatan. Silakan coba lagi.</p>`;
             }
         }
 
         function renderAgenda(data) {
             const container = document.getElementById("agenda-container");
-            
-            // Pemetaan Bulan Singkat Bahasa Indonesia
             const months = ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGU", "SEP", "OKT", "NOV", "DES"];
 
+            if (!data || data.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 py-8">Tidak ada agenda pada kategori ini.</p>`;
+                return;
+            }
+
             container.innerHTML = data.map(item => {
-                // item[0]: ID, item[1]: Judul, item[2]: Tanggal (YYYY-MM-DD), item[3]: Kategori
-                // item[4]: Waktu, item[5]: Lokasi, item[6]: Deskripsi
-                
-                const dateObj = new Date(item[2]);
-                const day = isNaN(dateObj.getDate()) ? "--" : String(dateObj.getDate()).padStart(2, '0');
-                const month = isNaN(dateObj.getMonth()) ? "---" : months[dateObj.getMonth()];
+                const judul = item[1] || 'Kegiatan';
+                const rawTanggal = item[2];
+                const kategori = item[3] || 'Umum';
+                const waktu = item[4] || '-';
+                const lokasi = item[5] || '-';
+                const deskripsi = item[6] || '';
+
+                // Parsing Tanggal Aman
+                let day = "--";
+                let month = "---";
+                if (rawTanggal) {
+                    const d = new Date(rawTanggal);
+                    if (!isNaN(d.getTime())) {
+                        day = String(d.getDate()).padStart(2, '0');
+                        month = months[d.getMonth()];
+                    }
+                }
 
                 return `
                     <div class="agenda-item bg-white p-5 rounded-2xl border border-emerald-500 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div class="flex items-start space-x-4">
                             <!-- Tanggal & Bulan -->
-                            <div class="bg-emerald-100 text-emerald-800 p-3 rounded-xl text-center min-w-[60px]">
+                            <div class="bg-emerald-100 text-emerald-800 p-3 rounded-xl text-center min-w-[65px] flex-shrink-0">
                                 <span class="block font-bold text-xl leading-none">${day}</span>
                                 <span class="text-xs uppercase tracking-wider font-semibold">${month}</span>
                             </div>
@@ -202,13 +166,13 @@
                             <!-- Detail Agenda -->
                             <div>
                                 <div class="flex items-center gap-2 mb-1">
-                                    <span class="text-xs font-medium px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded">${item[3] || 'Umum'}</span>
+                                    <span class="text-xs font-semibold px-2.5 py-0.5 bg-emerald-100 text-emerald-700 rounded-full">${kategori}</span>
                                 </div>
-                                <h3 class="font-bold text-gray-800 text-lg">${item[1]}</h3>
-                                <p class="text-xs text-gray-500 mt-1">${item[6] || ''}</p>
-                                <div class="flex flex-wrap items-center gap-4 text-xs text-gray-400 mt-2">
-                                    <span>🕒 ${item[4] || '-'}</span>
-                                    <span>📍 ${item[5] || '-'}</span>
+                                <h3 class="font-bold text-gray-800 text-lg">${judul}</h3>
+                                ${deskripsi ? `<p class="text-xs text-gray-500 mt-1">${deskripsi}</p>` : ''}
+                                <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 mt-2">
+                                    <span>🕒 ${waktu}</span>
+                                    <span>📍 ${lokasi}</span>
                                 </div>
                             </div>
                         </div>
@@ -216,27 +180,34 @@
                 `;
             }).join("");
         }
-            // 3. Logika Filter Tombol (Semua / Mendatang / Selesai)
-            function filterAgenda(category, btnElement) {
-                currentFilter = category;
 
-                // Reset Tampilan Tombol
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('bg-emerald-700', 'text-white');
-                    btn.classList.add('bg-white', 'text-gray-600');
-                });
+        // Logika Filter Tombol (Semua / Mendatang / Selesai)
+        function filterAgenda(statusFilter, btnElement) {
+            // Reset Style Tombol
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-emerald-700', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-600');
+            });
 
-                // Aktifkan Tombol Terpilih
-                if (btnElement) {
-                    btnElement.classList.remove('bg-white', 'text-gray-600');
-                    btnElement.classList.add('bg-emerald-700', 'text-white');
-                }
-
-                // Render Ulang Card
-                renderAgendaCards(rawAgendaData);
+            // Aktifkan Tombol Terpilih
+            if (btnElement) {
+                btnElement.classList.remove('bg-white', 'text-gray-600');
+                btnElement.classList.add('bg-emerald-700', 'text-white');
             }
-                });
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (statusFilter === 'semua') {
+                renderAgenda(allAgendaData);
+            } else if (statusFilter === 'mendatang') {
+                const filtered = allAgendaData.filter(item => new Date(item[2]) >= today);
+                renderAgenda(filtered);
+            } else if (statusFilter === 'selesai') {
+                const filtered = allAgendaData.filter(item => new Date(item[2]) < today);
+                renderAgenda(filtered);
             }
+        }
     </script>
 </body>
 </html>
